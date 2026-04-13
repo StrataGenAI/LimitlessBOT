@@ -1,0 +1,6 @@
+{
+  "name": "Limitless MEV Bot",
+  "description": "An event-driven prediction market trading bot for Limitless.exchange on Base, powered by Gemini AI for real-time news classification.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
