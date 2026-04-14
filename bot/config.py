@@ -10,11 +10,6 @@ class Config(BaseSettings):
     TELEGRAM_API_HASH: Optional[str] = None
     TELEGRAM_CHANNELS: list[str] = [] # List of channel IDs or usernames
     
-    # Twitter/X Accounts (usernames to scrape, without @)
-    TWITTER_ACCOUNTS: list[str] = []
-    TWITTER_SEARCH_QUERIES: list[str] = [] # Keywords to search (e.g., "BTC", "#ETH")
-    TWITTER_POLL_INTERVAL: int = 30 # Seconds between polls
-    
     # Gemini API
     GEMINI_API_KEY: str = ""
     
@@ -32,11 +27,6 @@ class Config(BaseSettings):
     DAILY_LOSS_LIMIT: float = 200.0
     MATERIALITY_THRESHOLD: float = 0.8
     EDGE_THRESHOLD: float = 0.05
-    
-    # Push Notifications
-    TELEGRAM_BOT_TOKEN: Optional[str] = None
-    TELEGRAM_CHAT_ID: Optional[str] = None
-    DISCORD_WEBHOOK_URL: Optional[str] = None
     
     # Operational
     DRY_RUN: bool = True
