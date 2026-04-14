@@ -18,6 +18,16 @@ async function startServer() {
 
   const dbPath = path.join(__dirname, "bot_data.db");
   const db = new sqlite3.Database(dbPath);
+  
+  // Schema migration
+  db.serialize(() => {
+    db.run("ALTER TABLE events ADD COLUMN source_type TEXT DEFAULT 'TELEGRAM'", (err) => {
+      // Ignore error if column already exists
+    });
+    db.run("ALTER TABLE events ADD COLUMN text_hash TEXT", (err) => {
+      // Ignore error if column already exists
+    });
+  });
 
   let botProcess: ChildProcess | null = null;
 
@@ -28,6 +38,7 @@ async function startServer() {
         e.id, 
         e.timestamp, 
         e.source_channel_id as source, 
+        e.source_type,
         e.text as headline, 
         c.direction as classification, 
         c.materiality, 

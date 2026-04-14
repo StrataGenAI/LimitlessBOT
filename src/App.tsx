@@ -32,6 +32,7 @@ interface BotEvent {
   id: number;
   timestamp: string;
   source: string;
+  source_type: string;
   headline: string;
   classification: string;
   materiality: number;
@@ -306,6 +307,7 @@ export default function App() {
                       <thead>
                         <tr className="bg-zinc-900/50 text-zinc-500 border-b border-zinc-800">
                           <th className="px-6 py-4 font-medium">Timestamp</th>
+                          <th className="px-6 py-4 font-medium">Source</th>
                           <th className="px-6 py-4 font-medium">Headline</th>
                           <th className="px-6 py-4 font-medium">Classification</th>
                           <th className="px-6 py-4 font-medium">Materiality</th>
@@ -317,6 +319,16 @@ export default function App() {
                           <tr key={event.id} className="hover:bg-zinc-900/30 transition-colors group">
                             <td className="px-6 py-4 text-zinc-500 font-mono text-xs">
                               {new Date(event.timestamp).toLocaleTimeString()}
+                            </td>
+                            <td className="px-6 py-4">
+                              <span className={cn(
+                                "px-2 py-1 rounded-md text-[10px] font-bold uppercase",
+                                event.source_type === "TWITTER" 
+                                  ? "bg-sky-500/10 text-sky-500" 
+                                  : "bg-violet-500/10 text-violet-500"
+                              )}>
+                                {event.source_type}
+                              </span>
                             </td>
                             <td className="px-6 py-4 max-w-md">
                               <p className="truncate text-zinc-300 group-hover:text-white transition-colors">{event.headline}</p>
